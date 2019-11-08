@@ -8,6 +8,17 @@ This is a fairly straight-forward Go implementation of the https://onetimesecret
 
 `go get -u github.com/j4ng5y/onetimesecret-go`
 
+```go
+package main
+
+import "github.com/j4ng5y/onetimesecret-go"
+
+func main() {
+    c := onetimesecret.New()
+    ...
+}
+```
+
 ## Examples
 
 Please see the [examples](/examples) folder.
