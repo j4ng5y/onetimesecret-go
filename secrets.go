@@ -21,39 +21,22 @@ type CreateSecretRequest struct {
 	Secret     string
 	Passphrase string
 	TTL        int
-	Recipient  string
+	Recipient  []string
 }
 
-// Marshal transforms data from the parent data structure into usable query parameters
+// Validate will verify that data in the parent data structure is present, and eventually, valid
 //
 // Variables:
 //     None
 //
 // Returns:
-//     (string): The formatted parameter string, "" if an error occurred
-//     (error):  An error if one exists, nil otherwise
-func (C *CreateSecretRequest) Marshal() (string, error) {
-	var params []string
-
+//     (error): An error if one exists, nil otherwise
+func (C *CreateSecretRequest) Validate() error {
 	if C.Secret == "" {
-		return "", fmt.Errorf("secret can not be left blank")
-	} else {
-		params = append(params, fmt.Sprintf("secret=%s", C.Secret))
+		return fmt.Errorf("secret can not be left blank")
 	}
 
-	if C.Passphrase != "" {
-		params = append(params, fmt.Sprintf("passphrase=%s", C.Passphrase))
-	}
-
-	if C.TTL != 0 {
-		params = append(params, fmt.Sprintf("ttl=%d", C.TTL))
-	}
-
-	if C.Recipient != "" {
-		params = append(params, fmt.Sprintf("recipient=%s", C.Recipient))
-	}
-
-	return strings.Join(params, ","), nil
+	return nil
 }
 
 // CreateSecretResponse is a structure that will hold data that is unmarshalled from a json response
@@ -74,12 +57,12 @@ type CreateSecretResponse struct {
 	CustID             string `json:"custid"`
 	MetadataKey        string `json:"metadata_key"`
 	SecretKey          string `json:"secret_key"`
-	TTL                string `json:"ttl"`
-	MetadataTTL        string `json:"metadata_ttl"`
-	SecretTTL          string `json:"secret_ttl"`
-	Recipient          string `json:"recipient"`
-	CreatedAt          string `json:"created"`
-	UpdatedAt          string `json:"updated"`
+	TTL                int `json:"ttl"`
+	MetadataTTL        int `json:"metadata_ttl"`
+	SecretTTL          int `json:"secret_ttl"`
+	Recipient          []string `json:"recipient"`
+	CreatedAt          int `json:"created"`
+	UpdatedAt          int `json:"updated"`
 	PassphraseRequired bool   `json:"passphrase_required"`
 }
 
@@ -109,33 +92,18 @@ func (C *CreateSecretResponse) Unmarshal(httpResponseBody io.ReadCloser) error {
 type GenerateSecretRequest struct {
 	Passphrase string
 	TTL        int
-	Recipient  string
+	Recipient  []string
 }
 
-// Marshal transforms data from the parent data structure into usable query parameters
+// Validate will verify that data in the parent data structure is present, and eventually, valid
 //
 // Variables:
 //     None
 //
 // Returns:
-//     (string): The formatted parameter string, "" if an error occurred
-//     (error):  An error if one exists, nil otherwise
-func (G *GenerateSecretRequest) Marshal() (string, error) {
-	var params []string
-
-	if G.Passphrase != "" {
-		params = append(params, fmt.Sprintf("passphrase=%s", G.Passphrase))
-	}
-
-	if G.TTL != 0 {
-		params = append(params, fmt.Sprintf("ttl=%d", G.TTL))
-	}
-
-	if G.Recipient != "" {
-		params = append(params, fmt.Sprintf("recipient=%s", G.Recipient))
-	}
-
-	return strings.Join(params, ","), nil
+//     (error): An error if one exists, nil otherwise
+func (G *GenerateSecretRequest) Validate() error {
+	return nil
 }
 
 // GenerateSecretResponse is a structure that will hold data that is unmarshalled from a json response
@@ -157,12 +125,12 @@ type GenerateSecretResponse struct {
 	Value              string `json:"value"`
 	MetadataKey        string `json:"metadata_key"`
 	SecretKey          string `json:"secret_key"`
-	TTL                string `json:"ttl"`
-	MetadataTTL        string `json:"metadata_ttl"`
-	SecretTTL          string `json:"secret_ttl"`
-	Recipient          string `json:"recipient"`
-	CreatedAt          string `json:"created"`
-	UpdatedAt          string `json:"updated"`
+	TTL                int `json:"ttl"`
+	MetadataTTL        int `json:"metadata_ttl"`
+	SecretTTL          int `json:"secret_ttl"`
+	Recipient          []string `json:"recipient"`
+	CreatedAt          int `json:"created"`
+	UpdatedAt          int `json:"updated"`
 	PassphraseRequired bool   `json:"passphrase_required"`
 }
 
@@ -193,26 +161,19 @@ type RetrieveSecretRequest struct {
 	Passphrase string
 }
 
-// Marshal transforms data from the parent data structure into usable query parameters
+// Validate will verify that data in the parent data structure is present, and eventually, valid
 //
 // Variables:
 //     None
 //
 // Returns:
-//     (string): The formatted parameter string, "" if an error occurred
-//     (error):  An error if one exists, nil otherwise
-func (R *RetrieveSecretRequest) Marshal() (string, error) {
-	var params []string
-
+//     (error): An error if one exists, nil otherwise
+func (R *RetrieveSecretRequest) Validate() error {
 	if R.SecretKey == "" {
-		return "", fmt.Errorf("SecretID must not be \"\"")
+		return fmt.Errorf("SecretID must not be \"\"")
 	}
 
-	if R.Passphrase != "" {
-		params = append(params, fmt.Sprintf("passphrase=%s", R.Passphrase))
-	}
-
-	return strings.Join(params, ","), nil
+	return nil
 }
 
 // RetrieveSecretResponse is a structure that will hold data that is unmarshalled from a json response
@@ -284,13 +245,13 @@ type RetrieveMetadataResponse struct {
 	CustID             string `json:"custid"`
 	MetadataKey        string `json:"metadata_key"`
 	SecretKey          string `json:"secret_key"`
-	TTL                string `json:"ttl"`
-	MetadataTTL        string `json:"metadata_ttl"`
-	SecretTTL          string `json:"secret_ttl"`
-	Recipient          string `json:"recipient"`
-	CreatedAt          string `json:"created"`
-	UpdatedAt          string `json:"updated"`
-	Received           string `json:"received"`
+	TTL                int `json:"ttl"`
+	MetadataTTL        int `json:"metadata_ttl"`
+	SecretTTL          int `json:"secret_ttl"`
+	Recipient          []string `json:"recipient"`
+	CreatedAt          int `json:"created"`
+	UpdatedAt          int `json:"updated"`
+	Received           int `json:"received"`
 	PassphraseRequired bool   `json:"passphrase_required"`
 }
 
@@ -352,13 +313,13 @@ type BurnSecretResponse struct {
 	CustID             string `json:"custid"`
 	MetadataKey        string `json:"metadata_key"`
 	SecretKey          string `json:"secret_key"`
-	TTL                string `json:"ttl"`
-	MetadataTTL        string `json:"metadata_ttl"`
-	SecretTTL          string `json:"secret_ttl"`
-	Recipient          string `json:"recipient"`
-	CreatedAt          string `json:"created"`
-	UpdatedAt          string `json:"updated"`
-	Received           string `json:"received"`
+	TTL                int `json:"ttl"`
+	MetadataTTL        int `json:"metadata_ttl"`
+	SecretTTL          int `json:"secret_ttl"`
+	Recipient          []string `json:"recipient"`
+	CreatedAt          int `json:"created"`
+	UpdatedAt          int `json:"updated"`
+	Received           int `json:"received"`
 	PassphraseRequired bool   `json:"passphrase_required"`
 }
 
@@ -400,13 +361,13 @@ type RetrieveRecentMetadataResponse []struct {
 	CustID             string `json:"custid"`
 	MetadataKey        string `json:"metadata_key"`
 	SecretKey          string `json:"secret_key"`
-	TTL                string `json:"ttl"`
-	MetadataTTL        string `json:"metadata_ttl"`
-	SecretTTL          string `json:"secret_ttl"`
-	Recipient          string `json:"recipient"`
-	CreatedAt          string `json:"created"`
-	UpdatedAt          string `json:"updated"`
-	Received           string `json:"received"`
+	TTL                int `json:"ttl"`
+	MetadataTTL        int `json:"metadata_ttl"`
+	SecretTTL          int `json:"secret_ttl"`
+	Recipient          []string `json:"recipient"`
+	CreatedAt          int `json:"created"`
+	UpdatedAt          int `json:"updated"`
+	Received           int `json:"received"`
 	PassphraseRequired bool   `json:"passphrase_required"`
 }
 
@@ -436,24 +397,35 @@ func (R *RetrieveRecentMetadataResponse) Unmarshal(httpResponseBody io.ReadClose
 //     (error):                 An error if one exists, nil otherwise
 func (C *Client) CreateSecret(request *CreateSecretRequest) (*CreateSecretResponse, error) {
 	var (
-		url      string
+		u        string
 		err      error
 		resp     = new(CreateSecretResponse)
 		httpReq  *http.Request
 		httpResp *http.Response
 	)
 
-	params, err := request.Marshal()
+	if err := request.Validate(); err != nil {
+		return nil, err
+	}
+
+	u = fmt.Sprintf("https://onetimesecret.com/api/v1/share?secret=%s", request.Secret)
+
+	if request.Passphrase != "" {
+		u = fmt.Sprintf("%s,passphrase=%s", request.Passphrase)
+	}
+	if request.TTL != 0 {
+		u = fmt.Sprintf("%s,ttl=%d", request.TTL)
+	}
+	if request.Recipient != nil {
+		u = fmt.Sprintf("%s,recipient=%s", strings.Join(request.Recipient, ","))
+	}
+
+	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	url = fmt.Sprintf("https://%s:%s@onetimesecret.com/api/v1/share?%s", C.creds.Username, C.creds.APIToken, params)
-
-	httpReq, err = http.NewRequest(http.MethodPost, url, nil)
-	if err != nil {
-		return nil, err
-	}
+	httpReq.SetBasicAuth(C.creds.Username, C.creds.APIToken)
 
 	httpResp, err = C.httpClient.Do(httpReq)
 	if err != nil {
@@ -481,24 +453,40 @@ func (C *Client) CreateSecret(request *CreateSecretRequest) (*CreateSecretRespon
 //     (error):                   An error if one exists, nil otherwise
 func (C *Client) GenerateSecret(request *GenerateSecretRequest) (*GenerateSecretResponse, error) {
 	var (
-		url      string
+		params []string
+		u      string
 		err      error
 		resp     = new(GenerateSecretResponse)
 		httpReq  *http.Request
 		httpResp *http.Response
 	)
 
-	params, err := request.Marshal()
+	if err := request.Validate(); err != nil {
+		return nil, err
+	}
+
+	u = fmt.Sprintf("https://onetimesecret.com/api/v1/generate")
+
+	if request.Passphrase != "" || request.TTL != 0 || request.Recipient != nil {
+		if request.Passphrase != "" {
+			params = append(params, fmt.Sprintf("passphrase=%s", request.Passphrase))
+		}
+		if request.TTL != 0 {
+			params = append(params, fmt.Sprintf("ttl=%d", request.TTL))
+		}
+		if request.Recipient != nil {
+			params = append(params, fmt.Sprintf("recipient=%s", strings.Join(request.Recipient, ",")))
+		}
+		u = fmt.Sprintf("%s?%s", u, strings.Join(params, ","))
+	}
+
+
+	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	url = fmt.Sprintf("https://%s:%s@onetimesecret.com/api/v1/generate?%s", C.creds.Username, C.creds.APIToken, params)
-
-	httpReq, err = http.NewRequest(http.MethodPost, url, nil)
-	if err != nil {
-		return nil, err
-	}
+	httpReq.SetBasicAuth(C.creds.Username, C.creds.APIToken)
 
 	httpResp, err = C.httpClient.Do(httpReq)
 	if err != nil {
@@ -526,24 +514,29 @@ func (C *Client) GenerateSecret(request *GenerateSecretRequest) (*GenerateSecret
 //     (error):                   An error if one exists, nil otherwise
 func (C *Client) RetrieveSecret(request *RetrieveSecretRequest) (*RetrieveSecretResponse, error) {
 	var (
-		url      string
+		u      string
 		err      error
 		resp     = new(RetrieveSecretResponse)
 		httpReq  *http.Request
 		httpResp *http.Response
 	)
 
-	params, err := request.Marshal()
+	if err := request.Validate(); err != nil {
+		return nil, err
+	}
+
+	u = fmt.Sprintf("https://onetimesecret.com/api/v1/secret/%s", request.SecretKey)
+
+	if request.Passphrase != "" {
+		u = fmt.Sprintf("%s?passphrase=%s", u, request.Passphrase)
+	}
+
+	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	url = fmt.Sprintf("https://%s:%s@onetimesecret.com/api/v1/secret/%s?%s", C.creds.Username, C.creds.APIToken, request.SecretKey, params)
-
-	httpReq, err = http.NewRequest(http.MethodPost, url, nil)
-	if err != nil {
-		return nil, err
-	}
+	httpReq.SetBasicAuth(C.creds.Username, C.creds.APIToken)
 
 	httpResp, err = C.httpClient.Do(httpReq)
 	if err != nil {
@@ -571,7 +564,7 @@ func (C *Client) RetrieveSecret(request *RetrieveSecretRequest) (*RetrieveSecret
 //     (error):                     An error if one exists, nil otherwise
 func (C *Client) RetrieveMetadata(request *RetrieveMetadataRequest) (*RetrieveMetadataResponse, error) {
 	var (
-		url      string
+		u      string
 		err      error
 		resp     = new(RetrieveMetadataResponse)
 		httpReq  *http.Request
@@ -582,12 +575,14 @@ func (C *Client) RetrieveMetadata(request *RetrieveMetadataRequest) (*RetrieveMe
 		return nil, err
 	}
 
-	url = fmt.Sprintf("https://%s:%s@onetimesecret.com/api/v1/private/%s", C.creds.Username, C.creds.APIToken, request.MetadataKey)
+	u = fmt.Sprintf("https://onetimesecret.com/api/v1/private/%s", request.MetadataKey)
 
-	httpReq, err = http.NewRequest(http.MethodPost, url, nil)
+	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
 		return nil, err
 	}
+
+	httpReq.SetBasicAuth(C.creds.Username, C.creds.APIToken)
 
 	httpResp, err = C.httpClient.Do(httpReq)
 	if err != nil {
@@ -615,7 +610,7 @@ func (C *Client) RetrieveMetadata(request *RetrieveMetadataRequest) (*RetrieveMe
 //     (error):               An error if one exists, nil otherwise
 func (C *Client) BurnSecret(request *BurnSecretRequest) (*BurnSecretResponse, error) {
 	var (
-		url      string
+		u      string
 		err      error
 		resp     = new(BurnSecretResponse)
 		httpReq  *http.Request
@@ -626,12 +621,14 @@ func (C *Client) BurnSecret(request *BurnSecretRequest) (*BurnSecretResponse, er
 		return nil, err
 	}
 
-	url = fmt.Sprintf("https://%s:%s@onetimesecret.com/api/v1/private/%s/burn", C.creds.Username, C.creds.APIToken, request.MetadataKey)
+	u = fmt.Sprintf("https://onetimesecret.com/api/v1/private/%s/burn", request.MetadataKey)
 
-	httpReq, err = http.NewRequest(http.MethodPost, url, nil)
+	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
 		return nil, err
 	}
+
+	httpReq.SetBasicAuth(C.creds.Username, C.creds.APIToken)
 
 	httpResp, err = C.httpClient.Do(httpReq)
 	if err != nil {
@@ -666,12 +663,14 @@ func (C *Client) RetrieveRecentMetadata(request *RetrieveRecentMetadataRequest) 
 		httpResp *http.Response
 	)
 
-	url = fmt.Sprintf("https://%s:%s@onetimesecret.com/api/v1/private/recent", C.creds.Username, C.creds.APIToken)
+	url = fmt.Sprintf("https://onetimesecret.com/api/v1/private/recent")
 
-	httpReq, err = http.NewRequest(http.MethodPost, url, nil)
+	httpReq, err = http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return nil, err
 	}
+
+	httpReq.SetBasicAuth(C.creds.Username, C.creds.APIToken)
 
 	httpResp, err = C.httpClient.Do(httpReq)
 	if err != nil {
