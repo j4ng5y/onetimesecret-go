@@ -14,7 +14,7 @@ package main
 import "github.com/j4ng5y/onetimesecret-go"
 
 func main() {
-    c := onetimesecret.New()
+    c := onetimesecret.New(&onetimesecret.Credentials{Username:"j4ng5y",APIToken:"abcdefg12345"})
     ...
 }
 ```
