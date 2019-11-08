@@ -54,16 +54,16 @@ func (C *CreateSecretRequest) Validate() error {
 //    updated: ditto, but the time it was last updated.
 //    passphrase_required: If a passphrase was provided when the secret was created, this will be true. Otherwise false, obviously.
 type CreateSecretResponse struct {
-	CustID             string `json:"custid"`
-	MetadataKey        string `json:"metadata_key"`
-	SecretKey          string `json:"secret_key"`
-	TTL                int `json:"ttl"`
-	MetadataTTL        int `json:"metadata_ttl"`
-	SecretTTL          int `json:"secret_ttl"`
+	CustID             string   `json:"custid"`
+	MetadataKey        string   `json:"metadata_key"`
+	SecretKey          string   `json:"secret_key"`
+	TTL                int      `json:"ttl"`
+	MetadataTTL        int      `json:"metadata_ttl"`
+	SecretTTL          int      `json:"secret_ttl"`
 	Recipient          []string `json:"recipient"`
-	CreatedAt          int `json:"created"`
-	UpdatedAt          int `json:"updated"`
-	PassphraseRequired bool   `json:"passphrase_required"`
+	CreatedAt          int      `json:"created"`
+	UpdatedAt          int      `json:"updated"`
+	PassphraseRequired bool     `json:"passphrase_required"`
 }
 
 // Unmarshal will read a json formatted http response body and apply those fields to structure fields
@@ -121,17 +121,17 @@ func (G *GenerateSecretRequest) Validate() error {
 //    updated: ditto, but the time it was last updated.
 //    passphrase_required: If a passphrase was provided when the secret was created, this will be true. Otherwise false, obviously.
 type GenerateSecretResponse struct {
-	CustID             string `json:"custid"`
-	Value              string `json:"value"`
-	MetadataKey        string `json:"metadata_key"`
-	SecretKey          string `json:"secret_key"`
-	TTL                int `json:"ttl"`
-	MetadataTTL        int `json:"metadata_ttl"`
-	SecretTTL          int `json:"secret_ttl"`
+	CustID             string   `json:"custid"`
+	Value              string   `json:"value"`
+	MetadataKey        string   `json:"metadata_key"`
+	SecretKey          string   `json:"secret_key"`
+	TTL                int      `json:"ttl"`
+	MetadataTTL        int      `json:"metadata_ttl"`
+	SecretTTL          int      `json:"secret_ttl"`
 	Recipient          []string `json:"recipient"`
-	CreatedAt          int `json:"created"`
-	UpdatedAt          int `json:"updated"`
-	PassphraseRequired bool   `json:"passphrase_required"`
+	CreatedAt          int      `json:"created"`
+	UpdatedAt          int      `json:"updated"`
+	PassphraseRequired bool     `json:"passphrase_required"`
 }
 
 // Unmarshal will read a json formatted http response body and apply those fields to structure fields
@@ -242,17 +242,17 @@ func (R *RetrieveMetadataRequest) Validate() error {
 //    received: Time the secret was received.
 //    passphrase_required: If a passphrase was provided when the secret was created, this will be true. Otherwise false, obviously.
 type RetrieveMetadataResponse struct {
-	CustID             string `json:"custid"`
-	MetadataKey        string `json:"metadata_key"`
-	SecretKey          string `json:"secret_key"`
-	TTL                int `json:"ttl"`
-	MetadataTTL        int `json:"metadata_ttl"`
-	SecretTTL          int `json:"secret_ttl"`
+	CustID             string   `json:"custid"`
+	MetadataKey        string   `json:"metadata_key"`
+	SecretKey          string   `json:"secret_key"`
+	TTL                int      `json:"ttl"`
+	MetadataTTL        int      `json:"metadata_ttl"`
+	SecretTTL          int      `json:"secret_ttl"`
 	Recipient          []string `json:"recipient"`
-	CreatedAt          int `json:"created"`
-	UpdatedAt          int `json:"updated"`
-	Received           int `json:"received"`
-	PassphraseRequired bool   `json:"passphrase_required"`
+	CreatedAt          int      `json:"created"`
+	UpdatedAt          int      `json:"updated"`
+	Received           int      `json:"received"`
+	PassphraseRequired bool     `json:"passphrase_required"`
 }
 
 // Unmarshal will read a json formatted http response body and apply those fields to structure fields
@@ -310,17 +310,17 @@ func (B *BurnSecretRequest) Validate() error {
 //    received: Time the secret was received.
 //    passphrase_required: If a passphrase was provided when the secret was created, this will be true. Otherwise false, obviously.
 type BurnSecretResponse struct {
-	CustID             string `json:"custid"`
-	MetadataKey        string `json:"metadata_key"`
-	SecretKey          string `json:"secret_key"`
-	TTL                int `json:"ttl"`
-	MetadataTTL        int `json:"metadata_ttl"`
-	SecretTTL          int `json:"secret_ttl"`
+	CustID             string   `json:"custid"`
+	MetadataKey        string   `json:"metadata_key"`
+	SecretKey          string   `json:"secret_key"`
+	TTL                int      `json:"ttl"`
+	MetadataTTL        int      `json:"metadata_ttl"`
+	SecretTTL          int      `json:"secret_ttl"`
 	Recipient          []string `json:"recipient"`
-	CreatedAt          int `json:"created"`
-	UpdatedAt          int `json:"updated"`
-	Received           int `json:"received"`
-	PassphraseRequired bool   `json:"passphrase_required"`
+	CreatedAt          int      `json:"created"`
+	UpdatedAt          int      `json:"updated"`
+	Received           int      `json:"received"`
+	PassphraseRequired bool     `json:"passphrase_required"`
 }
 
 // Unmarshal will read a json formatted http response body and apply those fields to structure fields
@@ -358,17 +358,17 @@ type RetrieveRecentMetadataRequest struct{}
 //    received: Time the secret was received.
 //    passphrase_required: If a passphrase was provided when the secret was created, this will be true. Otherwise false, obviously.
 type RetrieveRecentMetadataResponse []struct {
-	CustID             string `json:"custid"`
-	MetadataKey        string `json:"metadata_key"`
-	SecretKey          string `json:"secret_key"`
-	TTL                int `json:"ttl"`
-	MetadataTTL        int `json:"metadata_ttl"`
-	SecretTTL          int `json:"secret_ttl"`
+	CustID             string   `json:"custid"`
+	MetadataKey        string   `json:"metadata_key"`
+	SecretKey          string   `json:"secret_key"`
+	TTL                int      `json:"ttl"`
+	MetadataTTL        int      `json:"metadata_ttl"`
+	SecretTTL          int      `json:"secret_ttl"`
 	Recipient          []string `json:"recipient"`
-	CreatedAt          int `json:"created"`
-	UpdatedAt          int `json:"updated"`
-	Received           int `json:"received"`
-	PassphraseRequired bool   `json:"passphrase_required"`
+	CreatedAt          int      `json:"created"`
+	UpdatedAt          int      `json:"updated"`
+	Received           int      `json:"received"`
+	PassphraseRequired bool     `json:"passphrase_required"`
 }
 
 // Unmarshal will read a json formatted http response body and apply those fields to structure fields
@@ -453,8 +453,8 @@ func (C *Client) CreateSecret(request *CreateSecretRequest) (*CreateSecretRespon
 //     (error):                   An error if one exists, nil otherwise
 func (C *Client) GenerateSecret(request *GenerateSecretRequest) (*GenerateSecretResponse, error) {
 	var (
-		params []string
-		u      string
+		params   []string
+		u        string
 		err      error
 		resp     = new(GenerateSecretResponse)
 		httpReq  *http.Request
@@ -479,7 +479,6 @@ func (C *Client) GenerateSecret(request *GenerateSecretRequest) (*GenerateSecret
 		}
 		u = fmt.Sprintf("%s?%s", u, strings.Join(params, ","))
 	}
-
 
 	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
@@ -514,7 +513,7 @@ func (C *Client) GenerateSecret(request *GenerateSecretRequest) (*GenerateSecret
 //     (error):                   An error if one exists, nil otherwise
 func (C *Client) RetrieveSecret(request *RetrieveSecretRequest) (*RetrieveSecretResponse, error) {
 	var (
-		u      string
+		u        string
 		err      error
 		resp     = new(RetrieveSecretResponse)
 		httpReq  *http.Request
@@ -564,7 +563,7 @@ func (C *Client) RetrieveSecret(request *RetrieveSecretRequest) (*RetrieveSecret
 //     (error):                     An error if one exists, nil otherwise
 func (C *Client) RetrieveMetadata(request *RetrieveMetadataRequest) (*RetrieveMetadataResponse, error) {
 	var (
-		u      string
+		u        string
 		err      error
 		resp     = new(RetrieveMetadataResponse)
 		httpReq  *http.Request
@@ -610,7 +609,7 @@ func (C *Client) RetrieveMetadata(request *RetrieveMetadataRequest) (*RetrieveMe
 //     (error):               An error if one exists, nil otherwise
 func (C *Client) BurnSecret(request *BurnSecretRequest) (*BurnSecretResponse, error) {
 	var (
-		u      string
+		u        string
 		err      error
 		resp     = new(BurnSecretResponse)
 		httpReq  *http.Request
