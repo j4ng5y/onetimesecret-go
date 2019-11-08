@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/j4ng5y/onetimesecret-go)](https://goreportcard.com/report/github.com/j4ng5y/onetimesecret-go)
+
 # OneTimeSecret Go Client Library
 
 This is a fairly straight-forward Go implementation of the https://onetimesecret.com service for Go applications
