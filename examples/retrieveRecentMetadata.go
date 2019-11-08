@@ -8,7 +8,7 @@ import (
 func main() {
 	client := onetimesecret.New(&onetimesecret.Credentials{
 		Username: "jordan@example.com", // Required
-		APIToken: "abcdefg1234567", // Required
+		APIToken: "abcdefg1234567",     // Required
 	})
 
 	retrieveRecentMetataRequest := &onetimesecret.RetrieveRecentMetadataRequest{}
