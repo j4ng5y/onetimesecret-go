@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/j4ng5y/onetimesecret-go)](https://goreportcard.com/report/github.com/j4ng5y/onetimesecret-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/j4ng5y/onetimesecret-go)](https://goreportcard.com/report/github.com/j4ng5y/onetimesecret-go) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/j4ng5y/onetimesecret-go) [![GoDoc](https://godoc.org/github.com/j4ng5y/onetimesecret-go?status.svg)](https://godoc.org/github.com/j4ng5y/onetimesecret-go)
 
 # OneTimeSecret Go Client Library
 
