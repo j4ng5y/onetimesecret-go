@@ -4,7 +4,7 @@ import "net/http"
 
 // Client is the main client for performing actions against the https://onetimesecret.com/ service
 type Client struct {
-	otsURL string
+	otsURL     string
 	creds      *Credentials
 	httpClient *http.Client
 }
@@ -23,8 +23,8 @@ type Credentials struct {
 // ClientOptions are provided to adjust and supplement the functionality of the Client
 type ClientOptions struct {
 	OneTimeSecretURL string
-	Credentials *Credentials
-	HTTPClient  *http.Client
+	Credentials      *Credentials
+	HTTPClient       *http.Client
 }
 
 // New will generate a new Client with the default HTTP client
