@@ -4,6 +4,7 @@ import "net/http"
 
 // Client is the main client for performing actions against the https://onetimesecret.com/ service
 type Client struct {
+	otsURL string
 	creds      *Credentials
 	httpClient *http.Client
 }
@@ -21,6 +22,7 @@ type Credentials struct {
 
 // ClientOptions are provided to adjust and supplement the functionality of the Client
 type ClientOptions struct {
+	OneTimeSecretURL string
 	Credentials *Credentials
 	HTTPClient  *http.Client
 }
@@ -34,6 +36,7 @@ type ClientOptions struct {
 //     (*Client): A pointer to a new instance of Client
 func New(credentials *Credentials) *Client {
 	var C Client
+	C.otsURL = "https://onetimesecret.com"
 	C.creds = credentials
 	C.httpClient = http.DefaultClient
 	return &C
@@ -48,6 +51,7 @@ func New(credentials *Credentials) *Client {
 //     (*Client): A pointer to a new instance of Client
 func NewWithOptions(opts *ClientOptions) *Client {
 	var C Client
+	C.otsURL = opts.OneTimeSecretURL
 	C.creds = opts.Credentials
 	C.httpClient = opts.HTTPClient
 	return &C
