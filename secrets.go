@@ -408,7 +408,7 @@ func (C *Client) CreateSecret(request *CreateSecretRequest) (*CreateSecretRespon
 		return nil, err
 	}
 
-	u = fmt.Sprintf("https://onetimesecret.com/api/v1/share?secret=%s", request.Secret)
+	u = fmt.Sprintf("%s/api/v1/share?secret=%s", C.otsURL, request.Secret)
 
 	if request.Passphrase != "" {
 		u = fmt.Sprintf("%s,passphrase=%s", request.Passphrase)
@@ -465,7 +465,7 @@ func (C *Client) GenerateSecret(request *GenerateSecretRequest) (*GenerateSecret
 		return nil, err
 	}
 
-	u = fmt.Sprintf("https://onetimesecret.com/api/v1/generate")
+	u = fmt.Sprintf("%s/api/v1/generate", C.otsURL)
 
 	if request.Passphrase != "" || request.TTL != 0 || request.Recipient != nil {
 		if request.Passphrase != "" {
@@ -524,7 +524,7 @@ func (C *Client) RetrieveSecret(request *RetrieveSecretRequest) (*RetrieveSecret
 		return nil, err
 	}
 
-	u = fmt.Sprintf("https://onetimesecret.com/api/v1/secret/%s", request.SecretKey)
+	u = fmt.Sprintf("%s/api/v1/secret/%s", C.otsURL, request.SecretKey)
 
 	if request.Passphrase != "" {
 		u = fmt.Sprintf("%s?passphrase=%s", u, request.Passphrase)
@@ -574,7 +574,7 @@ func (C *Client) RetrieveMetadata(request *RetrieveMetadataRequest) (*RetrieveMe
 		return nil, err
 	}
 
-	u = fmt.Sprintf("https://onetimesecret.com/api/v1/private/%s", request.MetadataKey)
+	u = fmt.Sprintf("%s/api/v1/private/%s", C.otsURL, request.MetadataKey)
 
 	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
@@ -620,7 +620,7 @@ func (C *Client) BurnSecret(request *BurnSecretRequest) (*BurnSecretResponse, er
 		return nil, err
 	}
 
-	u = fmt.Sprintf("https://onetimesecret.com/api/v1/private/%s/burn", request.MetadataKey)
+	u = fmt.Sprintf("%s/api/v1/private/%s/burn", C.otsURL, request.MetadataKey)
 
 	httpReq, err = http.NewRequest(http.MethodPost, u, nil)
 	if err != nil {
@@ -662,7 +662,7 @@ func (C *Client) RetrieveRecentMetadata(request *RetrieveRecentMetadataRequest) 
 		httpResp *http.Response
 	)
 
-	url = fmt.Sprintf("https://onetimesecret.com/api/v1/private/recent")
+	url = fmt.Sprintf("%s/api/v1/private/recent", C.otsURL)
 
 	httpReq, err = http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
