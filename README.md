@@ -21,7 +21,7 @@ func main() {
 
 ## Examples
 
-Please see the [examples](/examples) folder.
+Please see the [examples](https://github.com/j4ng5y/onetimesecret-go/tree/master/examples) folder.
 
 ## Note
 
